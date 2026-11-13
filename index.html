@@ -158,6 +158,24 @@
                 " - C$ " + subtotal.toFixed(2);
 
             elemento.style.padding = "10px";
+            
+let botonEliminar = document.createElement("button");
+
+botonEliminar.textContent = "❌ Eliminar";
+botonEliminar.style.marginLeft = "15px";
+botonEliminar.style.padding = "6px 10px";
+botonEliminar.style.backgroundColor = "#dc2626";
+botonEliminar.style.color = "white";
+botonEliminar.style.border = "none";
+botonEliminar.style.borderRadius = "6px";
+botonEliminar.style.cursor = "pointer";
+
+botonEliminar.onclick = function() {
+    eliminarProducto(producto.nombre);
+};
+
+elemento.appendChild(botonEliminar);
+
 
             lista.appendChild(elemento);
         });
@@ -173,6 +191,18 @@
     document.getElementById("lista-carrito").innerHTML =
         "<li>Tu carrito está vacío.</li>";
 }
+    
+function eliminarProducto(nombre) {
+    carrito = carrito.filter(producto => producto.nombre !== nombre);
+
+    actualizarCarrito();
+
+    if (carrito.length === 0) {
+        document.getElementById("lista-carrito").innerHTML =
+            "<li>Tu carrito está vacío.</li>";
+    }
+}
+
 </script>
 
 </body>
