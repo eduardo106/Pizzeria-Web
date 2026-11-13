@@ -120,14 +120,7 @@
 </section>
 
     
-function vaciarCarrito() {
-    carrito = [];
 
-    actualizarCarrito();
-
-    document.getElementById("lista-carrito").innerHTML =
-        "<li>Tu carrito está vacío.</li>";
-}
 
 <script>
     let carrito = [];
@@ -172,6 +165,14 @@ function vaciarCarrito() {
         document.getElementById("total-carrito").textContent =
             total.toFixed(2);
     }
+    function vaciarCarrito() {
+    carrito = [];
+
+    actualizarCarrito();
+
+    document.getElementById("lista-carrito").innerHTML =
+        "<li>Tu carrito está vacío.</li>";
+}
 </script>
 
 </body>
