@@ -49,22 +49,108 @@
             <h3>🍕 Pizza de Queso</h3>
             <p>Deliciosa pizza con queso.</p>
             <p>Precio: C$ 200.00</p>
+            
+<button
+    type="button"
+    onclick="agregarAlCarrito('Pizza de Queso', 200)"
+    style="background-color: #991b1b;
+           color: white;
+           padding: 12px 20px;
+           border: none;
+           border-radius: 8px;
+           cursor: pointer;">
+    🛒 Agregar al carrito
+</button>
+
         </div>
 
         <div style="background: white; padding: 25px; border-radius: 12px; width: 220px;">
             <h3>🥤 Coca-Cola</h3>
             <p>Bebida refrescante.</p>
             <p>Precio: C$ 35.00</p>
+            
+<button type="button"
+    onclick="agregarAlCarrito('Coca-Cola', 35)"
+    style="background-color: #991b1b; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+    🛒 Agregar al carrito
+</button>
+
         </div>
 
         <div style="background: white; padding: 25px; border-radius: 12px; width: 220px;">
             <h3>💧 Agua Cielo</h3>
             <p>Agua embotellada.</p>
             <p>Precio: C$ 25.00</p>
+            
+<button type="button"
+    onclick="agregarAlCarrito('Agua Cielo', 25)"
+    style="background-color: #991b1b; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer;">
+    🛒 Agregar al carrito
+</button>
+
         </div>
 
     </div>
 </section>
+
+<section id="carrito" style="background: white; padding: 30px; margin: 30px auto; max-width: 600px; border-radius: 12px; text-align: center;">
+
+    <h2>🛒 Mi carrito de compras</h2>
+
+    <p>Estos son los productos que seleccionaste:</p>
+
+    <ul id="lista-carrito" style="list-style: none; padding: 0;">
+        <li>Tu carrito está vacío.</li>
+    </ul>
+
+    <h3>Total: C$ <span id="total-carrito">0.00</span></h3>
+
+</section>
+
+<script>
+    let carrito = [];
+
+    function agregarAlCarrito(nombre, precio) {
+        let producto = carrito.find(p => p.nombre === nombre);
+
+        if (producto) {
+            producto.cantidad++;
+        } else {
+            carrito.push({
+                nombre: nombre,
+                precio: precio,
+                cantidad: 1
+            });
+        }
+
+        actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+        let lista = document.getElementById("lista-carrito");
+        let total = 0;
+
+        lista.innerHTML = "";
+
+        carrito.forEach(producto => {
+            let subtotal = producto.precio * producto.cantidad;
+            total += subtotal;
+
+            let elemento = document.createElement("li");
+
+            elemento.textContent =
+                producto.nombre + " x" + producto.cantidad +
+                " - C$ " + subtotal.toFixed(2);
+
+            elemento.style.padding = "10px";
+
+            lista.appendChild(elemento);
+        });
+
+        document.getElementById("total-carrito").textContent =
+            total.toFixed(2);
+    }
+</script>
 
 </body>
 </html>
