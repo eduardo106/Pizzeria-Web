@@ -104,8 +104,30 @@
     </ul>
 
     <h3>Total: C$ <span id="total-carrito">0.00</span></h3>
+    
+<button type="button"
+    onclick="vaciarCarrito()"
+    style="background-color: #444;
+           color: white;
+           padding: 12px 20px;
+           border: none;
+           border-radius: 8px;
+           cursor: pointer;">
+    🗑️ Vaciar carrito
+</button>
+
 
 </section>
+
+    
+function vaciarCarrito() {
+    carrito = [];
+
+    actualizarCarrito();
+
+    document.getElementById("lista-carrito").innerHTML =
+        "<li>Tu carrito está vacío.</li>";
+}
 
 <script>
     let carrito = [];
